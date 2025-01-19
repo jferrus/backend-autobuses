@@ -8,7 +8,7 @@ Node.js
 Servicio basado en REST con el el protocolo HTTP.
 
 ## Lenguaje de programación principal
-Javascript, ECMASScript2024
+Javascript, ECMAScript2024
 
 ## Base de datos
 SQLite
