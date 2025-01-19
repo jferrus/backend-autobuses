@@ -1,7 +1,7 @@
 CREATE TABLE IF NOT EXISTS paradas_linea_1 (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   nombre TEXT,
-  opcional BOOLEAN,
+  opcional BOOLEAN
 );
 
 CREATE TABLE IF NOT EXISTS precios_linea_1 (
@@ -19,15 +19,15 @@ CREATE TABLE IF NOT EXISTS horarios_linea_1 (
   trayecto INTEGER
 );
 
-INSERT INTO paradas_linea_1 (nombre, opcional) VALUES ('Bicorp',true)
-INSERT INTO paradas_linea_1 (nombre, opcional) VALUES ('Quesa',true)
-INSERT INTO paradas_linea_1 (nombre, opcional) VALUES ('Navarrés',false)
-INSERT INTO paradas_linea_1 (nombre, opcional) VALUES ('Bolbaite',false)
-INSERT INTO paradas_linea_1 (nombre, opcional) VALUES ('Chella',false)
-INSERT INTO paradas_linea_1 (nombre, opcional) VALUES ('Anna',false)
-INSERT INTO paradas_linea_1 (nombre, opcional) VALUES ('Enguera',false)
-INSERT INTO paradas_linea_1 (nombre, opcional) VALUES ('Estubeny',true)
-INSERT INTO paradas_linea_1 (nombre, opcional) VALUES ('Játiva',false)
+INSERT INTO paradas_linea_1 (nombre, opcional) VALUES ('Bicorp',true);
+INSERT INTO paradas_linea_1 (nombre, opcional) VALUES ('Quesa',true);
+INSERT INTO paradas_linea_1 (nombre, opcional) VALUES ('Navarrés',false);
+INSERT INTO paradas_linea_1 (nombre, opcional) VALUES ('Bolbaite',false);
+INSERT INTO paradas_linea_1 (nombre, opcional) VALUES ('Chella',false);
+INSERT INTO paradas_linea_1 (nombre, opcional) VALUES ('Anna',false);
+INSERT INTO paradas_linea_1 (nombre, opcional) VALUES ('Enguera',false);
+INSERT INTO paradas_linea_1 (nombre, opcional) VALUES ('Estubeny',true);
+INSERT INTO paradas_linea_1 (nombre, opcional) VALUES ('Játiva',false);
 INSERT INTO paradas_linea_1 (nombre, opcional) VALUES ('Hospial Játiva', false);
 
 INSERT INTO paradas_linea_1 (punto_a, punto_b, precio) VALUES (1,2, 1.35);

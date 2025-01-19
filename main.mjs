@@ -2,7 +2,7 @@ import express from 'express';
 import logger from 'morgan';
 
 import indexRouter from './routes/index.mjs';
-import usersRouter from './routes/users.mjs';
+import paradasRouter from './routes/paradas.mjs';
 
 var app = express();
 
@@ -12,7 +12,7 @@ app.use(express.urlencoded({ extended: false }));
 
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/paradas', paradasRouter);
 
 console.log(`Servidor en http://localhost:${process.env.PORT || 3000}`);
 
