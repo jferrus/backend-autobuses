@@ -8,7 +8,7 @@ import main from '../main.mjs';
 import debug from 'debug';
 import http from 'http';
 
-const log = debug('vulnerabilidades-node:server');
+const log = debug('backend-autobuses:server');
 
 /**
  * Get port from environment and store in Express.
@@ -22,7 +22,7 @@ main.set('port', port);
  * Create HTTP server.
  */
 
-const server = http.createServer(main.app);
+const server = http.createServer(main);
 
 /**
  * Listen on provided port, on all network interfaces.
