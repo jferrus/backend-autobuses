@@ -36,14 +36,14 @@ export async function initializeDatabase() {
   }
 }
 
-export async function getAllNombreParadasLinea1(nombre) {
+export async function getAllNombreParadasLinea1ExceptoId(id) {
   
   let rows = null;
   const db = await initializeDatabase();
-  const sqlQuery = `SELECT nombre FROM paradas_linea_1`;
+  const sqlQuery = 'SELECT id, nombre, opcional FROM paradas_linea_1 WHERE id != ? ORDER BY id ASC;';
 
   try {    
-    const queryPreparada = await db.prepare(sqlQuery);
+    const queryPreparada = await db.prepare(sqlQuery, id);
 
     rows = await queryPreparada.all();
 

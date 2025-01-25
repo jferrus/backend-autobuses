@@ -1,12 +1,18 @@
 import express from 'express';
-import {getAllNombreParadasLinea1} from '../utils/db.mjs'
+import {getAllNombreParadasLinea1ExceptoId} from '../utils/db.mjs'
 
 var router = express.Router();
 
 /* GET users listing. */
-router.get('/', async function(req, res, next) {
+router.get('/excepto/:id', async function(req, res, next) {
 
-  const nombres = await getAllNombreParadasLinea1();
+  let id = req.params.id;
+
+  if(!id) {
+    id = 0;
+  }
+
+  const nombres = await getAllNombreParadasLinea1ExceptoId(id);
 
   res.status(200).json(nombres);
 });
