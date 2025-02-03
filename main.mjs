@@ -18,11 +18,8 @@ app.use((req, res, next) => {
   next();
 });
 
-
-
 app.use('/', indexRouter);
 app.use('/paradas', paradasRouter);
-
 
 console.log(`Servidor en http://localhost:${process.env.PORT || 3000}`);
 

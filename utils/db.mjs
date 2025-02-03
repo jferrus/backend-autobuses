@@ -58,3 +58,26 @@ export async function getAllNombreParadasLinea1ExceptoId(id) {
 
   return rows;
 }
+
+export async function getAllNombreParadasLinea1InversoExceptoId(id) {
+  
+  let rows = null;
+  const db = await initializeDatabase();
+  const sqlQuery = 'SELECT id, nombre, opcional FROM paradas_linea_1 WHERE id != ? ORDER BY id DESC;';
+
+  try {    
+    const queryPreparada = await db.prepare(sqlQuery, id);
+
+    rows = await queryPreparada.all();
+
+    if (rows.length > 0) {
+      logger.info(rows);
+    } else {
+      logger.info("No rows found for the given name.");
+    }
+  } catch (err) {
+    logger.error(err);
+  }
+
+  return rows;
+}

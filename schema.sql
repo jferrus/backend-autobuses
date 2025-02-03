@@ -28,7 +28,7 @@ INSERT INTO paradas_linea_1 (nombre, opcional) VALUES ('Anna',false);
 INSERT INTO paradas_linea_1 (nombre, opcional) VALUES ('Enguera',false);
 INSERT INTO paradas_linea_1 (nombre, opcional) VALUES ('Estubeny',true);
 INSERT INTO paradas_linea_1 (nombre, opcional) VALUES ('Játiva',false);
-INSERT INTO paradas_linea_1 (nombre, opcional) VALUES ('Hospial Játiva', false);
+INSERT INTO paradas_linea_1 (nombre, opcional) VALUES ('Hospital Játiva', false);
 
 INSERT INTO paradas_linea_1 (punto_a, punto_b, precio) VALUES (1,2, 1.35);
 INSERT INTO paradas_linea_1 (punto_a, punto_b, precio) VALUES (1,3, 1.35); 
