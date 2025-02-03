@@ -1,32 +1,12 @@
 import express from 'express';
-import {getAllNombreParadasLinea1ExceptoId, getAllNombreParadasLinea1InversoExceptoId} from '../utils/db.mjs'
+import {getAllNombreParadasLinea1} from '../utils/db.mjs'
 
 var router = express.Router();
 
 /* GET users listing. */
-router.get('/excepto/:id', async function(req, res, next) {
+router.get('/linea1', async function(req, res, next) {
 
-  let id = req.params.id;
-
-  if(!id) {
-    id = 0;
-  }
-
-  const nombres = await getAllNombreParadasLinea1ExceptoId(id);
-
-  res.status(200).json(nombres);
-});
-
-/* GET users listing. */
-router.get('/inverso/excepto/:id', async function(req, res, next) {
-
-  let id = req.params.id;
-
-  if(!id) {
-    id = 0;
-  }
-
-  const nombres = await getAllNombreParadasLinea1InversoExceptoId(id);
+  const nombres = await getAllNombreParadasLinea1();
 
   res.status(200).json(nombres);
 });
