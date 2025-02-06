@@ -36,6 +36,10 @@ export async function initializeDatabase() {
   }
 }
 
+/**
+ * Devuelve todos el id, nombre y si es una parada opcional de la linea 1 de TOGSA
+ * @returns {any}
+ */
 export async function getAllNombreParadasLinea1() {
   
   let rows = null;
@@ -44,6 +48,51 @@ export async function getAllNombreParadasLinea1() {
 
   try {    
     const queryPreparada = await db.prepare(sqlQuery);
+
+    rows = await queryPreparada.all();
+
+    if (rows.length > 0) {
+      logger.info(rows);
+    } else {
+      logger.info("No rows found for the given name.");
+    }
+  } catch (err) {
+    logger.error(err);
+  }
+
+  return rows;
+}
+
+/**
+ * 
+ * @param {*} idOrigen 
+ * @param {*} idDestino 
+ * @returns {any}
+ */
+export async function getHorariosDesdeAhaciaB(idOrigen, idDestino) {
+  let rows = null;
+  const db = await initializeDatabase();
+
+//ACORDARME DE LA CONDICION DE DIRECCION
+  const sqlQuery = `SELECT salida, llegada, p.precio, trayecto
+                      FROM paradas_linea_1 p 
+                      JOIN horarios_linea_1 h
+                        ON p.punto_a = h.origen
+                      LAG(trayecto, 1, NULL) OVER (ORDER BY some_ordering_column) AS previous_value,
+                        CASE
+                            WHEN your_column = LAG(your_column, 1, NULL) OVER (ORDER BY some_ordering_column) THEN 'Same as previous'
+                            ELSE 'Different'
+                        END AS comparison_result
+                      WHERE p.punto_a = ?
+                        AND p.punto_b = ?
+                     ORDER BY trayctoASC;`;
+
+                
+
+  try { 
+  
+
+    const queryPreparada = await db.prepare(sqlQuery, idOrigen, idDestino);
 
     rows = await queryPreparada.all();
 
