@@ -42,7 +42,7 @@ export async function initializeDatabase() {
  */
 export async function getAllNombreParadasLinea1() {
   
-  let rows = {};
+  let rows = [];
   const db = await initializeDatabase();
   const sqlQuery = 'SELECT id, nombre, opcional FROM paradas_linea_1 ORDER BY id ASC;';
 
@@ -70,7 +70,7 @@ export async function getAllNombreParadasLinea1() {
  * @returns {any}
  */
 export async function getHorariosDesdeAhaciaB(idOrigen, idDestino) {
-  let rows = {};
+  let rows = [];
   const db = await initializeDatabase();
 
   const sqlQuery = `SELECT
@@ -86,15 +86,16 @@ export async function getHorariosDesdeAhaciaB(idOrigen, idDestino) {
                             ON p.punto_a = h2.origen 
                             AND h1.direccion = h2.direccion -- Join for llegada
                       WHERE
-                          p.punto_a = 1  -- Your desired punto_a value
+                          p.punto_a = ?  -- Your desired punto_a value
                           AND h2.salida > h1.salida -- llegada should be after salida
                       ORDER BY
-                          h1.salida, h2.salida -- Order by departure and arrival;`
+                          h1.salida, h2.salida -- Order by departure and arrival
+                      LIMIT 1;`
                 
 
   try { 
   
-    const queryPreparada = await db.prepare(sqlQuery, idOrigen, idDestino);
+    const queryPreparada = await db.prepare(sqlQuery, idOrigen);
 
     rows = await queryPreparada.all();
 
