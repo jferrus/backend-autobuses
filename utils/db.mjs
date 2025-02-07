@@ -71,9 +71,12 @@ export async function getAllNombreParadasLinea1() {
  */
 export async function getHorariosDesdeAhaciaB(idOrigen, idDestino) {
   let rows = [];
+  let direccion = 10;
+  let punto_a = 3;
+  let punto_b = 10;
+  let sqlQuery = "";
   const db = await initializeDatabase();
-
-  const sqlQuery = `SELECT
+  const sqlQueryDireccion10 = `SELECT
                           h1.salida AS salida,
                           h2.salida AS llegada,
                           h1.trayecto,
@@ -90,18 +93,56 @@ export async function getHorariosDesdeAhaciaB(idOrigen, idDestino) {
                           p.punto_a = ?  -- Your desired punto_a value
                           AND p.punto_b = ?
                           AND h1.direccion = h2.direccion
-                          AND h1.direccion = ?
                           AND h1.trayecto = h2.trayecto
+                          AND h1.direccion = ?
                       ORDER BY
                           STRFTIME('%H:%M', h1.salida) ASC-- Order by departure and arrival`;
-                      
-                
+
+    const sqlQueryDirecion1 = `SELECT
+                          h2.salida AS salida,
+                          h1.salida AS llegada,
+                          h1.trayecto,
+                          h1.direccion
+                      FROM
+                          horarios_linea_1 h1
+                      JOIN
+                          precios_linea_1 p 
+                          ON p.punto_a = h1.origen
+                      LEFT JOIN  -- Use LEFT JOIN to handle cases where there's no matching llegada
+                          horarios_linea_1 h2 
+                            ON p.punto_b = h2.origen
+                      WHERE
+                          p.punto_a = ?  -- Your desired punto_a value
+                          AND p.punto_b = ?
+                          AND h1.direccion = h2.direccion
+                          AND h1.trayecto = h2.trayecto
+                          AND h1.direccion = ?
+                      ORDER BY
+                          STRFTIME('%H:%M', h1.salida) ASC-- Order by departure and arrival`;
+           
+  //Si son equivalentes e incluso si uno es string y otro un númer retorna vacío
+  if(idDestino == idOrigen){
+    return [];
+  }
+
+  if(idDestino < idOrigen){
+    direccion = 1;
+    punto_a = idDestino;
+    punto_b = idOrigen;
+    sqlQuery = sqlQueryDirecion1;
+  } else {
+    direccion = 10;
+    punto_a = idOrigen;
+    punto_b = idDestino;
+    sqlQuery = sqlQueryDireccion10;
+  }
 
   try { 
 
+    
     const direccion = idDestino > idOrigen ? 10 : 1;
   
-    const queryPreparada = await db.prepare(sqlQuery, idOrigen, idDestino, direccion);
+    const queryPreparada = await db.prepare(sqlQuery, punto_a, punto_b, direccion);
 
     rows = await queryPreparada.all();
 
