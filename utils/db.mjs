@@ -76,11 +76,14 @@ export async function getHorariosDesdeAhaciaB(idOrigen, idDestino) {
   let punto_b = 10;
   let sqlQuery = "";
   const db = await initializeDatabase();
-  const sqlQueryDireccion10 = `SELECT
-                          h1.salida AS salida,
-                          h2.salida AS llegada,
+  const sqlQueryDireccion10 = 
+                      `SELECT
+                          h1.origen,
+                          STRFTIME('%HH:%MM', h1.salida) AS salida,
+                          STRFTIME('%HH:%MM', h2.salida) AS llegada,
+                          h1.direccion,
                           h1.trayecto,
-                          h1.direccion
+                          p.precio
                       FROM
                           horarios_linea_1 h1
                       JOIN
@@ -96,13 +99,16 @@ export async function getHorariosDesdeAhaciaB(idOrigen, idDestino) {
                           AND h1.trayecto = h2.trayecto
                           AND h1.direccion = ?
                       ORDER BY
-                          STRFTIME('%H:%M', h1.salida) ASC-- Order by departure and arrival`;
+                          STRFTIME('%HH:%MM', h1.salida) ASC-- Order by departure and arrival`;
 
-    const sqlQueryDirecion1 = `SELECT
-                          h2.salida AS salida,
-                          h1.salida AS llegada,
+    const sqlQueryDirecion1 = 
+                      `SELECT
+                          h1.origen,
+                          STRFTIME('%HH:%MM', h2.salida) AS salida,
+                          STRFTIME('%HH:%MM', h1.salida) AS llegada,
+                          h1.direccion,
                           h1.trayecto,
-                          h1.direccion
+                          p.precio
                       FROM
                           horarios_linea_1 h1
                       JOIN
@@ -118,7 +124,7 @@ export async function getHorariosDesdeAhaciaB(idOrigen, idDestino) {
                           AND h1.trayecto = h2.trayecto
                           AND h1.direccion = ?
                       ORDER BY
-                          STRFTIME('%H:%M', h1.salida) ASC-- Order by departure and arrival`;
+                          STRFTIME('%HH:%MM', h1.salida) ASC-- Order by departure and arrival`;
            
   //Si son equivalentes e incluso si uno es string y otro un númer retorna vacío
   if(idDestino == idOrigen){
@@ -138,9 +144,6 @@ export async function getHorariosDesdeAhaciaB(idOrigen, idDestino) {
   }
 
   try { 
-
-    
-    const direccion = idDestino > idOrigen ? 10 : 1;
   
     const queryPreparada = await db.prepare(sqlQuery, punto_a, punto_b, direccion);
 
