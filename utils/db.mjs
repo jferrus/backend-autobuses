@@ -73,7 +73,7 @@ export async function getHorariosDesdeAhaciaB(idOrigen, idDestino) {
   let rows = null;
   const db = await initializeDatabase();
 
-  const sqlQuery = `SELECT salida, llegada, p.precio, trayecto
+  const sqlQuery = `SELECT salida, llegada, p.precio, h.trayecto
                       FROM paradas_linea_1 p 
                       JOIN horarios_linea_1 h
                         ON p.punto_a = h.origen
