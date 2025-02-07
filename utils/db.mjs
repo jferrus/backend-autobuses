@@ -83,14 +83,18 @@ export async function getHorariosDesdeAhaciaB(idOrigen, idDestino) {
                           ON p.punto_a = h1.origen
                       LEFT JOIN  -- Use LEFT JOIN to handle cases where there's no matching llegada
                           horarios_linea_1 h2 
-                            ON p.punto_b = h2.origen 
+                            ON p.punto_b = h2.origen
+                      WHERE
+                          p.punto_a = ?  -- Your desired punto_a value
+                          AND p.punto_b = ?
                       ORDER BY
-                          h1.salida, h2.salida -- Order by departure and arrival;`
+                          STRFTIME('%H:%M', h1.salida) ASC-- Order by departure and arrival`;
+                      
                 
 
   try { 
   
-    const queryPreparada = await db.prepare(sqlQuery);
+    const queryPreparada = await db.prepare(sqlQuery, idOrigen, idDestino);
 
     rows = await queryPreparada.all();
 
