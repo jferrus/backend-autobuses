@@ -75,7 +75,9 @@ export async function getHorariosDesdeAhaciaB(idOrigen, idDestino) {
 
   const sqlQuery = `SELECT
                           h1.salida AS salida,
-                          h2.salida AS llegada
+                          h2.salida AS llegada,
+                          h1.trayecto,
+                          h1.direccion
                       FROM
                           horarios_linea_1 h1
                       JOIN
@@ -87,14 +89,19 @@ export async function getHorariosDesdeAhaciaB(idOrigen, idDestino) {
                       WHERE
                           p.punto_a = ?  -- Your desired punto_a value
                           AND p.punto_b = ?
+                          AND h1.direccion = h2.direccion
+                          AND h1.direccion = ?
+                          AND h1.trayecto = h2.trayecto
                       ORDER BY
                           STRFTIME('%H:%M', h1.salida) ASC-- Order by departure and arrival`;
                       
                 
 
   try { 
+
+    const direccion = idDestino > idOrigen ? 10 : 1;
   
-    const queryPreparada = await db.prepare(sqlQuery, idOrigen, idDestino);
+    const queryPreparada = await db.prepare(sqlQuery, idOrigen, idDestino, direccion);
 
     rows = await queryPreparada.all();
 
