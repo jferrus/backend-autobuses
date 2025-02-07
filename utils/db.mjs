@@ -77,11 +77,6 @@ export async function getHorariosDesdeAhaciaB(idOrigen, idDestino) {
                       FROM paradas_linea_1 p 
                       JOIN horarios_linea_1 h
                         ON p.punto_a = h.origen
-                      LAG(trayecto, 1, NULL) OVER (ORDER BY some_ordering_column) AS previous_value,
-                        CASE
-                            WHEN your_column = LAG(your_column, 1, NULL) OVER (ORDER BY some_ordering_column) THEN 'Same as previous'
-                            ELSE 'Different'
-                        END AS comparison_result
                       WHERE p.punto_a = ?
                         AND p.punto_b = ?
                      ORDER BY trayctoASC;`;

@@ -3,6 +3,7 @@ import logger from 'morgan';
 
 import indexRouter from './routes/index.mjs';
 import paradasRouter from './routes/paradas.mjs';
+import horariosRouter from './routes/horarios.mjs';
 
 var app = express();
 
@@ -20,6 +21,7 @@ app.use((req, res, next) => {
 
 app.use('/', indexRouter);
 app.use('/paradas', paradasRouter);
+app.use('/horarios', horariosRouter);
 
 console.log(`Servidor en http://localhost:${process.env.PORT || 3000}`);
 

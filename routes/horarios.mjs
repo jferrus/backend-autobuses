@@ -6,10 +6,10 @@ var router = express.Router();
 /**
  * Muestra mediante el método GET una lista de horarios desde una parada A a una B.
  */
-router.get('/horarios/origen/:id_origen/destino/:id_destino`', async function(req, res, next) {
+router.get('/origen/:id_origen/destino/:id_destino', async function(req, res, next) {
 
-  const idOrigen = req.params.id_origen;
-  const idDestino = req.params.id_destino;
+  const idOrigen = Number.parseInt(req.params.id_origen);
+  const idDestino = Number.parseInt(req.params.id_destino);
 
   const nombres = await getHorariosDesdeAhaciaB(idOrigen, idDestino);
 
