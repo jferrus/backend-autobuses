@@ -80,29 +80,24 @@ export async function getHorariosDesdeAhaciaB(idOrigen, idDestino) {
                           horarios_linea_1 h1
                       JOIN
                           precios_linea_1 p 
-                          ON p.punto_b = h1.origen
+                          ON p.punto_a = h1.origen
                       LEFT JOIN  -- Use LEFT JOIN to handle cases where there's no matching llegada
                           horarios_linea_1 h2 
-                            ON p.punto_a = h2.origen 
-                            AND h1.direccion = h2.direccion -- Join for llegada
-                      WHERE
-                          p.punto_a = ?  -- Your desired punto_a value
-                          AND h2.salida > h1.salida -- llegada should be after salida
+                            ON p.punto_b = h2.origen 
                       ORDER BY
-                          h1.salida, h2.salida -- Order by departure and arrival
-                      LIMIT 1;`
+                          h1.salida, h2.salida -- Order by departure and arrival;`
                 
 
   try { 
   
-    const queryPreparada = await db.prepare(sqlQuery, idOrigen);
+    const queryPreparada = await db.prepare(sqlQuery);
 
     rows = await queryPreparada.all();
 
     if (rows.length > 0) {
       logger.info(rows);
     } else {
-      logger.info("No rows found for the given name.");
+      logger.info("No existen filas con ese origen y destino");
     }
   } catch (err) {
     logger.error(err);
