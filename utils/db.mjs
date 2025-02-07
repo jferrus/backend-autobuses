@@ -64,16 +64,15 @@ export async function getAllNombreParadasLinea1() {
 }
 
 /**
- * 
- * @param {*} idOrigen 
- * @param {*} idDestino 
+ * Devuelve una filas de salidas y llegadas durante un trayecto a un determinado precio.
+ * @param {number} idOrigen 
+ * @param {number} idDestino 
  * @returns {any}
  */
 export async function getHorariosDesdeAhaciaB(idOrigen, idDestino) {
   let rows = null;
   const db = await initializeDatabase();
 
-//ACORDARME DE LA CONDICION DE DIRECCION
   const sqlQuery = `SELECT salida, llegada, p.precio, trayecto
                       FROM paradas_linea_1 p 
                       JOIN horarios_linea_1 h
@@ -91,7 +90,6 @@ export async function getHorariosDesdeAhaciaB(idOrigen, idDestino) {
 
   try { 
   
-
     const queryPreparada = await db.prepare(sqlQuery, idOrigen, idDestino);
 
     rows = await queryPreparada.all();
