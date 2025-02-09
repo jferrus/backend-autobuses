@@ -1,5 +1,5 @@
 import express from 'express';
-import {getHorariosDesdeAhaciaB} from '../utils/db.mjs'
+import {getHorariosLinea1DesdeAhaciaB, getHorariosLinea2DesdeAhaciaB} from '../utils/db.mjs'
 import log4js from 'log4js';
 import { param, validationResult } from 'express-validator';
 
@@ -13,9 +13,9 @@ logger.level = "debug";
 var router = express.Router();
 
 /**
- * Muestra mediante el método GET una lista de horarios desde una parada A a una B.
+ * Muestra mediante el método GET una lista de horarios de la linea 1 de TOGSA desde una parada A a una B.
  */
-router.get('/origen/:id_origen/destino/:id_destino', 
+router.get('/linea1/origen/:id_origen/destino/:id_destino', 
 param('id_origen').trim().notEmpty().isLength({min:1, max:3}).isNumeric().isInt(),
 param('id_origen').trim().notEmpty().isLength({min:1, max:3}).isNumeric().isInt(),
 async function(req, res, next) {
@@ -28,7 +28,7 @@ async function(req, res, next) {
 
     logger.info(`El id de origen es ${idOrigen} y el id de destino es ${idDestino}`);
 
-    const nombres = await getHorariosDesdeAhaciaB(idOrigen, idDestino);
+    const nombres = await getHorariosLinea1DesdeAhaciaB(idOrigen, idDestino);
 
     res.status(200).json(nombres);
   } else {
@@ -37,4 +37,30 @@ async function(req, res, next) {
   }
 });
 
+
+/**
+ * Muestra mediante el método GET una lista de horarios de la linea 2 de TOGSA desde una parada A a una B.
+ */
+router.get('/linea2/origen/:id_origen/destino/:id_destino', 
+  param('id_origen').trim().notEmpty().isLength({min:1, max:3}).isNumeric().isInt(),
+  param('id_origen').trim().notEmpty().isLength({min:1, max:3}).isNumeric().isInt(),
+  async function(req, res, next) {
+  
+    const result = validationResult(req);
+    if (result.isEmpty()) {
+  
+      const idOrigen = Number.parseInt(req.params.id_origen);
+      const idDestino = Number.parseInt(req.params.id_destino);
+  
+      logger.info(`El id de origen es ${idOrigen} y el id de destino es ${idDestino}`);
+  
+      const nombres = await getHorariosLinea2DesdeAhaciaB(idOrigen, idDestino);
+  
+      res.status(200).json(nombres);
+    } else {
+      logger.error(result.array());
+      res.status(500).json({'error': 'incorrect paramaters'});
+    }
+  });
+  
 export default router;

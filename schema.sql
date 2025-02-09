@@ -42,6 +42,8 @@ CREATE TABLE IF NOT EXISTS horarios_linea_2 (
 
 -- Línea 1
 
+-- paradas linea 1
+
 INSERT INTO paradas_linea_1 (nombre, opcional) VALUES ('Bicorp',true);
 INSERT INTO paradas_linea_1 (nombre, opcional) VALUES ('Quesa',true);
 INSERT INTO paradas_linea_1 (nombre, opcional) VALUES ('Navarrés',false);
@@ -52,6 +54,8 @@ INSERT INTO paradas_linea_1 (nombre, opcional) VALUES ('Enguera',false);
 INSERT INTO paradas_linea_1 (nombre, opcional) VALUES ('Estubeny',true);
 INSERT INTO paradas_linea_1 (nombre, opcional) VALUES ('Xàtiva',false);
 INSERT INTO paradas_linea_1 (nombre, opcional) VALUES ('Hospital Xàtiva', false);
+
+-- precios linea 1
 
 INSERT INTO precios_linea_1 (punto_a, punto_b, precio) VALUES (1,2, 1.35);
 INSERT INTO precios_linea_1 (punto_a, punto_b, precio) VALUES (1,3, 1.35); 
@@ -99,6 +103,7 @@ INSERT INTO precios_linea_1 (punto_a, punto_b, precio) VALUES (8,9, 1.35);
 INSERT INTO precios_linea_1 (punto_a, punto_b, precio) VALUES (8,10, 1.55); 
 INSERT INTO precios_linea_1 (punto_a, punto_b, precio) VALUES (9,10, 1.35);
 
+-- ida linea 1
 
 INSERT INTO horarios_linea_1 (origen, direccion, salida, trayecto) VALUES (1, 10, '05:50:00', 1);
 INSERT INTO horarios_linea_1 (origen, direccion, salida, trayecto) VALUES (1, 10, '07:30:00', 3);
@@ -150,6 +155,9 @@ INSERT INTO horarios_linea_1 (origen, direccion, salida, trayecto) VALUES (10, 1
 INSERT INTO horarios_linea_1 (origen, direccion, salida, trayecto) VALUES (10, 10, '09:02:00', 3);
 INSERT INTO horarios_linea_1 (origen, direccion, salida, trayecto) VALUES (10, 10, '11:25:00', 4);
 INSERT INTO horarios_linea_1 (origen, direccion, salida, trayecto) VALUES (10, 10, '14:32:00', 5);
+
+-- vuelta linea 1
+
 INSERT INTO horarios_linea_1 (origen, direccion, salida, trayecto) VALUES (10, 1, '09:02:00', 2);
 INSERT INTO horarios_linea_1 (origen, direccion, salida, trayecto) VALUES (10, 1, '11:25:00', 3);
 INSERT INTO horarios_linea_1 (origen, direccion, salida, trayecto) VALUES (10, 1, '14:35:00', 4);
@@ -193,6 +201,7 @@ INSERT INTO horarios_linea_1 (origen, direccion, salida, trayecto) VALUES (1, 1,
 
 ------------ Línea 2
 
+-- paradas linea 2
 INSERT INTO paradas_linea_2 (nombre, opcional) VALUES ('Sumacarcer',true);
 INSERT INTO paradas_linea_2 (nombre, opcional) VALUES ('Sellent',true);
 INSERT INTO paradas_linea_2 (nombre, opcional) VALUES ('Cotes',true);
@@ -204,6 +213,75 @@ INSERT INTO paradas_linea_2 (nombre, opcional) VALUES ('Senyera',false);
 INSERT INTO paradas_linea_2 (nombre, opcional) VALUES ('Manuel',false);
 INSERT INTO paradas_linea_2 (nombre, opcional) VALUES ('Hospital Xàtiva',false);
 INSERT INTO paradas_linea_2 (nombre, opcional) VALUES ('Xàtiva',false);
+
+-- precios linea 2
+
+INSERT INTO precios_linea_2 (punto_a, punto_b, precio) VALUES (1, 2, 0.0);
+INSERT INTO precios_linea_2 (punto_a, punto_b, precio) VALUES (1, 3, 1.35);
+INSERT INTO precios_linea_2 (punto_a, punto_b, precio) VALUES (1, 4, 1.35);
+INSERT INTO precios_linea_2 (punto_a, punto_b, precio) VALUES (1, 5, 1.35);
+INSERT INTO precios_linea_2 (punto_a, punto_b, precio) VALUES (1, 6, 1.35);
+INSERT INTO precios_linea_2 (punto_a, punto_b, precio) VALUES (1, 7, 1.50);
+INSERT INTO precios_linea_2 (punto_a, punto_b, precio) VALUES (1, 8, 1.70);
+INSERT INTO precios_linea_2 (punto_a, punto_b, precio) VALUES (1, 9, 1.95);
+INSERT INTO precios_linea_2 (punto_a, punto_b, precio) VALUES (1, 10, 2.50);
+INSERT INTO precios_linea_2 (punto_a, punto_b, precio) VALUES (1, 11, 2.80);
+
+INSERT INTO precios_linea_2 (punto_a, punto_b, precio) VALUES (2, 3, 1.35);
+INSERT INTO precios_linea_2 (punto_a, punto_b, precio) VALUES (2, 4, 1.35);
+INSERT INTO precios_linea_2 (punto_a, punto_b, precio) VALUES (2, 5, 1.35);
+INSERT INTO precios_linea_2 (punto_a, punto_b, precio) VALUES (2, 6, 1.35);
+INSERT INTO precios_linea_2 (punto_a, punto_b, precio) VALUES (2, 7, 1.35);
+INSERT INTO precios_linea_2 (punto_a, punto_b, precio) VALUES (2, 8, 1.35);
+INSERT INTO precios_linea_2 (punto_a, punto_b, precio) VALUES (2, 9, 1.60);
+INSERT INTO precios_linea_2 (punto_a, punto_b, precio) VALUES (2, 10, 2.20);
+INSERT INTO precios_linea_2 (punto_a, punto_b, precio) VALUES (2, 11, 2.50);
+
+INSERT INTO precios_linea_2 (punto_a, punto_b, precio) VALUES (3, 4, 1.35);
+INSERT INTO precios_linea_2 (punto_a, punto_b, precio) VALUES (3, 5, 1.35);
+INSERT INTO precios_linea_2 (punto_a, punto_b, precio) VALUES (3, 6, 1.35);
+INSERT INTO precios_linea_2 (punto_a, punto_b, precio) VALUES (3, 7, 1.35);
+INSERT INTO precios_linea_2 (punto_a, punto_b, precio) VALUES (3, 8, 1.35);
+INSERT INTO precios_linea_2 (punto_a, punto_b, precio) VALUES (3, 9, 1.35);
+INSERT INTO precios_linea_2 (punto_a, punto_b, precio) VALUES (3, 10, 1.70);
+INSERT INTO precios_linea_2 (punto_a, punto_b, precio) VALUES (3, 11, 2.00);
+
+INSERT INTO precios_linea_2 (punto_a, punto_b, precio) VALUES (4, 5, 1.35);
+INSERT INTO precios_linea_2 (punto_a, punto_b, precio) VALUES (4, 6, 1.35);
+INSERT INTO precios_linea_2 (punto_a, punto_b, precio) VALUES (4, 7, 1.35);
+INSERT INTO precios_linea_2 (punto_a, punto_b, precio) VALUES (4, 8, 1.35);
+INSERT INTO precios_linea_2 (punto_a, punto_b, precio) VALUES (4, 9, 1.35);
+INSERT INTO precios_linea_2 (punto_a, punto_b, precio) VALUES (4, 10, 1.60);
+INSERT INTO precios_linea_2 (punto_a, punto_b, precio) VALUES (4, 11, 1.90);
+
+INSERT INTO precios_linea_2 (punto_a, punto_b, precio) VALUES (5, 6, 1.35);
+INSERT INTO precios_linea_2 (punto_a, punto_b, precio) VALUES (5, 7, 1.35);
+INSERT INTO precios_linea_2 (punto_a, punto_b, precio) VALUES (5, 8, 1.35);
+INSERT INTO precios_linea_2 (punto_a, punto_b, precio) VALUES (5, 9, 1.35);
+INSERT INTO precios_linea_2 (punto_a, punto_b, precio) VALUES (5, 10, 1.55);
+INSERT INTO precios_linea_2 (punto_a, punto_b, precio) VALUES (5, 11, 1.85);
+
+INSERT INTO precios_linea_2 (punto_a, punto_b, precio) VALUES (6, 7, 1.35);
+INSERT INTO precios_linea_2 (punto_a, punto_b, precio) VALUES (6, 8, 1.35);
+INSERT INTO precios_linea_2 (punto_a, punto_b, precio) VALUES (6, 9, 1.35);
+INSERT INTO precios_linea_2 (punto_a, punto_b, precio) VALUES (6, 10, 1.40);
+INSERT INTO precios_linea_2 (punto_a, punto_b, precio) VALUES (6, 11, 1.70);
+
+INSERT INTO precios_linea_2 (punto_a, punto_b, precio) VALUES (7, 8, 1.35);
+INSERT INTO precios_linea_2 (punto_a, punto_b, precio) VALUES (7, 9, 1.35);
+INSERT INTO precios_linea_2 (punto_a, punto_b, precio) VALUES (7, 10, 1.35);
+INSERT INTO precios_linea_2 (punto_a, punto_b, precio) VALUES (7, 11, 1.35);
+
+INSERT INTO precios_linea_2 (punto_a, punto_b, precio) VALUES (8, 9, 1.35);
+INSERT INTO precios_linea_2 (punto_a, punto_b, precio) VALUES (8, 10, 1.35);
+INSERT INTO precios_linea_2 (punto_a, punto_b, precio) VALUES (8, 11, 1.35);
+
+INSERT INTO precios_linea_2 (punto_a, punto_b, precio) VALUES (9, 10, 1.35);
+INSERT INTO precios_linea_2 (punto_a, punto_b, precio) VALUES (9, 11, 1.35);
+
+INSERT INTO precios_linea_2 (punto_a, punto_b, precio) VALUES (10, 11, 1.35);
+
+--ida linea 2
 
 INSERT INTO horarios_linea_2 (origen, direccion, salida, trayecto) VALUES (1, 11, '07:35:00', 1);
 INSERT INTO horarios_linea_2 (origen, direccion, salida, trayecto) VALUES (1, 11, '09:36:00', 3);
@@ -257,68 +335,56 @@ INSERT INTO horarios_linea_2 (origen, direccion, salida, trayecto) VALUES (11, 1
 INSERT INTO horarios_linea_2 (origen, direccion, salida, trayecto) VALUES (11, 11, '10:32:00', 3);
 INSERT INTO horarios_linea_2 (origen, direccion, salida, trayecto) VALUES (11, 11, '14:07:00', 4);
 
+--vuleta linea 2
 
-INSERT INTO precios_linea_2 (punto_a, punto_b, precio) VALUES (1, 2, 0.0);
-INSERT INTO precios_linea_2 (punto_a, punto_b, precio) VALUES (1, 3, 1.35);
-INSERT INTO precios_linea_2 (punto_a, punto_b, precio) VALUES (1, 4, 1.35);
-INSERT INTO precios_linea_2 (punto_a, punto_b, precio) VALUES (1, 5, 1.35);
-INSERT INTO precios_linea_2 (punto_a, punto_b, precio) VALUES (1, 6, 1.35);
-INSERT INTO precios_linea_2 (punto_a, punto_b, precio) VALUES (1, 7, 1.50);
-INSERT INTO precios_linea_2 (punto_a, punto_b, precio) VALUES (1, 8, 1.70);
-INSERT INTO precios_linea_2 (punto_a, punto_b, precio) VALUES (1, 9, 1.95);
-INSERT INTO precios_linea_2 (punto_a, punto_b, precio) VALUES (1, 10, 2.50);
-INSERT INTO precios_linea_2 (punto_a, punto_b, precio) VALUES (1, 11, 2.80);
+INSERT INTO horarios_linea_2 (origen, direccion, salida, trayecto) VALUES (11, 1, '08:40:00', 1);
+INSERT INTO horarios_linea_2 (origen, direccion, salida, trayecto) VALUES (11, 1, '12:15:00', 2);
+INSERT INTO horarios_linea_2 (origen, direccion, salida, trayecto) VALUES (11, 1, '13:00:00', 3);
+INSERT INTO horarios_linea_2 (origen, direccion, salida, trayecto) VALUES (11, 1, '14:07:00', 4);
 
-INSERT INTO precios_linea_2 (punto_a, punto_b, precio) VALUES (2, 3, 1.35);
-INSERT INTO precios_linea_2 (punto_a, punto_b, precio) VALUES (2, 4, 1.35);
-INSERT INTO precios_linea_2 (punto_a, punto_b, precio) VALUES (2, 5, 1.35);
-INSERT INTO precios_linea_2 (punto_a, punto_b, precio) VALUES (2, 6, 1.35);
-INSERT INTO precios_linea_2 (punto_a, punto_b, precio) VALUES (2, 7, 1.35);
-INSERT INTO precios_linea_2 (punto_a, punto_b, precio) VALUES (2, 8, 1.35);
-INSERT INTO precios_linea_2 (punto_a, punto_b, precio) VALUES (2, 9, 1.60);
-INSERT INTO precios_linea_2 (punto_a, punto_b, precio) VALUES (2, 10, 2.20);
-INSERT INTO precios_linea_2 (punto_a, punto_b, precio) VALUES (2, 11, 2.50);
+INSERT INTO horarios_linea_2 (origen, direccion, salida, trayecto) VALUES (10, 1, '08:50:00', 1);
+INSERT INTO horarios_linea_2 (origen, direccion, salida, trayecto) VALUES (10, 1, '12:25:00', 2);
+INSERT INTO horarios_linea_2 (origen, direccion, salida, trayecto) VALUES (10, 1, '13:10:00', 3);
+INSERT INTO horarios_linea_2 (origen, direccion, salida, trayecto) VALUES (10, 1, '14:17:00', 4);
 
-INSERT INTO precios_linea_2 (punto_a, punto_b, precio) VALUES (3, 4, 1.35);
-INSERT INTO precios_linea_2 (punto_a, punto_b, precio) VALUES (3, 5, 1.35);
-INSERT INTO precios_linea_2 (punto_a, punto_b, precio) VALUES (3, 6, 1.35;
-INSERT INTO precios_linea_2 (punto_a, punto_b, precio) VALUES (3, 7, 1.35);
-INSERT INTO precios_linea_2 (punto_a, punto_b, precio) VALUES (3, 8, 1.35);
-INSERT INTO precios_linea_2 (punto_a, punto_b, precio) VALUES (3, 9, 1.35);
-INSERT INTO precios_linea_2 (punto_a, punto_b, precio) VALUES (3, 10, 1.70);
-INSERT INTO precios_linea_2 (punto_a, punto_b, precio) VALUES (3, 11, 2.00);
+INSERT INTO horarios_linea_2 (origen, direccion, salida, trayecto) VALUES (9, 1, '08:58:00', 1);
+INSERT INTO horarios_linea_2 (origen, direccion, salida, trayecto) VALUES (9, 1, '12:33:00', 2);
+INSERT INTO horarios_linea_2 (origen, direccion, salida, trayecto) VALUES (9, 1, '13:18:00', 3);
+INSERT INTO horarios_linea_2 (origen, direccion, salida, trayecto) VALUES (9, 1, '14:25:00', 4);
 
-INSERT INTO precios_linea_2 (punto_a, punto_b, precio) VALUES (4, 5, 1.35);
-INSERT INTO precios_linea_2 (punto_a, punto_b, precio) VALUES (4, 6, 1.35;
-INSERT INTO precios_linea_2 (punto_a, punto_b, precio) VALUES (4, 7, 1.35);
-INSERT INTO precios_linea_2 (punto_a, punto_b, precio) VALUES (4, 8, 1.35);
-INSERT INTO precios_linea_2 (punto_a, punto_b, precio) VALUES (4, 9, 1.35);
-INSERT INTO precios_linea_2 (punto_a, punto_b, precio) VALUES (4, 10, 1.60);
-INSERT INTO precios_linea_2 (punto_a, punto_b, precio) VALUES (4, 11, 1.90);
+INSERT INTO horarios_linea_2 (origen, direccion, salida, trayecto) VALUES (8, 1, '09:03:00', 1);
+INSERT INTO horarios_linea_2 (origen, direccion, salida, trayecto) VALUES (8, 1, '12:38:00', 2);
+INSERT INTO horarios_linea_2 (origen, direccion, salida, trayecto) VALUES (8, 1, '13:23:00', 3);
+INSERT INTO horarios_linea_2 (origen, direccion, salida, trayecto) VALUES (8, 1, '14:30:00', 4);
 
-INSERT INTO precios_linea_2 (punto_a, punto_b, precio) VALUES (5, 6, 1.35;
-INSERT INTO precios_linea_2 (punto_a, punto_b, precio) VALUES (5, 7, 1.35);
-INSERT INTO precios_linea_2 (punto_a, punto_b, precio) VALUES (5, 8, 1.35);
-INSERT INTO precios_linea_2 (punto_a, punto_b, precio) VALUES (5, 9, 1.35);
-INSERT INTO precios_linea_2 (punto_a, punto_b, precio) VALUES (5, 10, 1.55);
-INSERT INTO precios_linea_2 (punto_a, punto_b, precio) VALUES (5, 11, 1.85);
+INSERT INTO horarios_linea_2 (origen, direccion, salida, trayecto) VALUES (7, 1, '09:08:00', 1);
+INSERT INTO horarios_linea_2 (origen, direccion, salida, trayecto) VALUES (7, 1, '12:43:00', 2);
+INSERT INTO horarios_linea_2 (origen, direccion, salida, trayecto) VALUES (7, 1, '13:28:00', 3);
+INSERT INTO horarios_linea_2 (origen, direccion, salida, trayecto) VALUES (7, 1, '14:35:00', 4);
 
-INSERT INTO precios_linea_2 (punto_a, punto_b, precio) VALUES (6, 7, 1.35);
-INSERT INTO precios_linea_2 (punto_a, punto_b, precio) VALUES (6, 8, 1.35);
-INSERT INTO precios_linea_2 (punto_a, punto_b, precio) VALUES (6, 9, 1.35);
-INSERT INTO precios_linea_2 (punto_a, punto_b, precio) VALUES (6, 10, 1.40);
-INSERT INTO precios_linea_2 (punto_a, punto_b, precio) VALUES (6, 11, 1.70);
+INSERT INTO horarios_linea_2 (origen, direccion, salida, trayecto) VALUES (6, 1, '09:16:00', 1);
+INSERT INTO horarios_linea_2 (origen, direccion, salida, trayecto) VALUES (6, 1, '12:51:00', 2);
+INSERT INTO horarios_linea_2 (origen, direccion, salida, trayecto) VALUES (6, 1, '13:36:00', 3);
+INSERT INTO horarios_linea_2 (origen, direccion, salida, trayecto) VALUES (6, 1, '14:43:00', 4);
 
-INSERT INTO precios_linea_2 (punto_a, punto_b, precio) VALUES (7, 8, 1.35);
-INSERT INTO precios_linea_2 (punto_a, punto_b, precio) VALUES (7, 9, 1.35);
-INSERT INTO precios_linea_2 (punto_a, punto_b, precio) VALUES (7, 10, 1.35);
-INSERT INTO precios_linea_2 (punto_a, punto_b, precio) VALUES (7, 11, 1.35);
+INSERT INTO horarios_linea_2 (origen, direccion, salida, trayecto) VALUES (5, 1, '09:21:00', 1);
+INSERT INTO horarios_linea_2 (origen, direccion, salida, trayecto) VALUES (5, 1, '12:56:00', 2);
+INSERT INTO horarios_linea_2 (origen, direccion, salida, trayecto) VALUES (5, 1, '13:41:00', 3);
+INSERT INTO horarios_linea_2 (origen, direccion, salida, trayecto) VALUES (5, 1, '14:48:00', 4);
 
-INSERT INTO precios_linea_2 (punto_a, punto_b, precio) VALUES (8, 9, 1.35);
-INSERT INTO precios_linea_2 (punto_a, punto_b, precio) VALUES (8, 10, 1.35);
-INSERT INTO precios_linea_2 (punto_a, punto_b, precio) VALUES (8, 11, 1.35);
+INSERT INTO horarios_linea_2 (origen, direccion, salida, trayecto) VALUES (4, 1, '01:21:00', 1);
+INSERT INTO horarios_linea_2 (origen, direccion, salida, trayecto) VALUES (4, 1, '12:56:00', 2);
+INSERT INTO horarios_linea_2 (origen, direccion, salida, trayecto) VALUES (4, 1, '13:41:00', 3);
+INSERT INTO horarios_linea_2 (origen, direccion, salida, trayecto) VALUES (4, 1, '14:48:00', 4);
 
-INSERT INTO precios_linea_2 (punto_a, punto_b, precio) VALUES (9, 10, 1.35);
-INSERT INTO precios_linea_2 (punto_a, punto_b, precio) VALUES (9, 11, 1.35);
+INSERT INTO horarios_linea_2 (origen, direccion, salida, trayecto) VALUES (3, 1, '09:24:00', 1);
+INSERT INTO horarios_linea_2 (origen, direccion, salida, trayecto) VALUES (3, 1, '12:59:00', 2);
+INSERT INTO horarios_linea_2 (origen, direccion, salida, trayecto) VALUES (3, 1, '14:51:00', 4);
 
-INSERT INTO precios_linea_2 (punto_a, punto_b, precio) VALUES (10, 11, 1.35);
+INSERT INTO horarios_linea_2 (origen, direccion, salida, trayecto) VALUES (2, 1, '09:31:00', 1);
+INSERT INTO horarios_linea_2 (origen, direccion, salida, trayecto) VALUES (2, 1, '13:06:00', 2);
+INSERT INTO horarios_linea_2 (origen, direccion, salida, trayecto) VALUES (2, 1, '14:58:00', 4);
+
+INSERT INTO horarios_linea_2 (origen, direccion, salida, trayecto) VALUES (1, 1, '09:36:00', 1);
+INSERT INTO horarios_linea_2 (origen, direccion, salida, trayecto) VALUES (1, 1, '13:11:00', 2);
+INSERT INTO horarios_linea_2 (origen, direccion, salida, trayecto) VALUES (1, 1, '15:03:00', 4);

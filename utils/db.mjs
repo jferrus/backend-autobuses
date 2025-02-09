@@ -64,12 +64,12 @@ export async function getAllNombreParadasLinea1() {
 }
 
 /**
- * Devuelve una filas de salidas y llegadas durante un trayecto a un determinado precio.
+ * Devuelve una filas de salidas y llegadas durante un trayecto de la linea 1 de TOGSA a un determinado precio.
  * @param {number} idOrigen 
  * @param {number} idDestino 
  * @returns {any}
  */
-export async function getHorariosDesdeAhaciaB(idOrigen, idDestino) {
+export async function getHorariosLinea1DesdeAhaciaB(idOrigen, idDestino) {
   let rows = [];
   let direccion = 10;
   let punto_a = 3;
@@ -137,10 +137,134 @@ export async function getHorariosDesdeAhaciaB(idOrigen, idDestino) {
     punto_b = idOrigen;
     sqlQuery = sqlQueryDirecion1;
   } else {
-    direccion = 10;
     punto_a = idOrigen;
     punto_b = idDestino;
     sqlQuery = sqlQueryDireccion10;
+  }
+
+  try { 
+  
+    const queryPreparada = await db.prepare(sqlQuery, punto_a, punto_b, direccion);
+
+    rows = await queryPreparada.all();
+
+    if (rows.length > 0) {
+      logger.info(rows);
+    } else {
+      logger.info("No existen filas con ese origen y destino");
+    }
+  } catch (err) {
+    logger.error(err);
+  }
+
+  return rows;
+}
+
+/**
+ * Devuelve todos el id, nombre y si es una parada opcional de la linea 2 de TOGSA
+ * @returns {any}
+ */
+export async function getAllNombreParadasLinea2() {
+  
+  let rows = [];
+  const db = await initializeDatabase();
+  const sqlQuery = 'SELECT id, nombre, opcional FROM paradas_linea_2 ORDER BY id ASC;';
+
+  try {    
+    const queryPreparada = await db.prepare(sqlQuery);
+
+    rows = await queryPreparada.all();
+
+    if (rows.length > 0) {
+      logger.info(rows);
+    } else {
+      logger.info("No rows found for the given name.");
+    }
+  } catch (err) {
+    logger.error(err);
+  }
+
+  return rows;
+}
+
+
+/**
+ * Devuelve una filas de salidas y llegadas durante un trayecto de la linea 2 de TOGSA a un determinado precio.
+ * @param {number} idOrigen 
+ * @param {number} idDestino 
+ * @returns {any}
+ */
+export async function getHorariosLinea2DesdeAhaciaB(idOrigen, idDestino) {
+  let rows = [];
+  let direccion = 11;
+  let punto_a = 1;
+  let punto_b = direccion;
+  let sqlQuery = "";
+  const db = await initializeDatabase();
+  const sqlQueryDireccion11 = 
+                      `SELECT
+                          h1.origen,
+                          STRFTIME('%HH:%MM', h1.salida) AS salida,
+                          STRFTIME('%HH:%MM', h2.salida) AS llegada,
+                          h1.direccion,
+                          h1.trayecto,
+                          p.precio
+                      FROM
+                          horarios_linea_2 h1
+                      JOIN
+                          precios_linea_2 p 
+                          ON p.punto_a = h1.origen
+                      LEFT JOIN  -- Use LEFT JOIN to handle cases where there's no matching llegada
+                          horarios_linea_2 h2 
+                            ON p.punto_b = h2.origen
+                      WHERE
+                          p.punto_a = ?  -- Your desired punto_a value
+                          AND p.punto_b = ?
+                          AND h1.direccion = h2.direccion
+                          AND h1.trayecto = h2.trayecto
+                          AND h1.direccion = ?
+                      ORDER BY
+                          STRFTIME('%HH:%MM', h1.salida) ASC-- Order by departure and arrival`;
+
+    const sqlQueryDirecion1 = 
+                      `SELECT
+                          h1.origen,
+                          STRFTIME('%HH:%MM', h2.salida) AS salida,
+                          STRFTIME('%HH:%MM', h1.salida) AS llegada,
+                          h1.direccion,
+                          h1.trayecto,
+                          p.precio
+                      FROM
+                          horarios_linea_2 h1
+                      JOIN
+                          precios_linea_2 p 
+                          ON p.punto_a = h1.origen
+                      LEFT JOIN  -- Use LEFT JOIN to handle cases where there's no matching llegada
+                          horarios_linea_2 h2 
+                            ON p.punto_b = h2.origen
+                      WHERE
+                          p.punto_a = ?  -- Your desired punto_a value
+                          AND p.punto_b = ?
+                          AND h1.direccion = h2.direccion
+                          AND h1.trayecto = h2.trayecto
+                          AND h1.direccion = ?
+                      ORDER BY
+                          STRFTIME('%HH:%MM', h1.salida) ASC-- Order by departure and arrival`;
+           
+  //Si son equivalentes e incluso si uno es string y otro un númer retorna vacío
+  if(idDestino == idOrigen){
+    return [];
+  }
+
+  if(idDestino < idOrigen){
+    direccion = 1;
+    punto_a = idDestino;
+    punto_b = idOrigen;
+    sqlQuery = sqlQueryDirecion1;
+  } else {
+    punto_a = idOrigen;
+    punto_b = idDestino;
+    sqlQuery = sqlQueryDireccion11;
   }
 
   try { 
