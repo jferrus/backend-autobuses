@@ -335,7 +335,7 @@ INSERT INTO horarios_linea_2 (origen, direccion, salida, trayecto) VALUES (11, 1
 INSERT INTO horarios_linea_2 (origen, direccion, salida, trayecto) VALUES (11, 11, '10:32:00', 3);
 INSERT INTO horarios_linea_2 (origen, direccion, salida, trayecto) VALUES (11, 11, '14:07:00', 4);
 
---vuleta linea 2
+--vuelta linea 2
 
 INSERT INTO horarios_linea_2 (origen, direccion, salida, trayecto) VALUES (11, 1, '08:40:00', 1);
 INSERT INTO horarios_linea_2 (origen, direccion, salida, trayecto) VALUES (11, 1, '12:15:00', 2);

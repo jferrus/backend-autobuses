@@ -230,7 +230,7 @@ export async function getHorariosLinea2DesdeAhaciaB(idOrigen, idDestino) {
                           STRFTIME('%HH:%MM', h2.salida) AS salida,
                           STRFTIME('%HH:%MM', h1.salida) AS llegada,
                           h1.direccion,
-                          h1.trayecto,
+                          h1.trayecto
                       FROM
                           horarios_linea_2 h1
                       JOIN
