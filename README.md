@@ -1,5 +1,5 @@
 # Backend Autobuses
-El propósito de esta aplicación es de adquirir habilidad y si procede, vender servicios de instalación, configuración y puesta en marcha de este programa.
+El propósito de esta aplicación es gestionar horarios de autobuses.
 
 ## Entorno de programación
 Node.js
